@@ -54,6 +54,7 @@ input {
 .books-container {
     border: 3px solid green;
     background-color: rgba(235, 154, 154, 0.3);
+    display: flex;
 }
 
 .book-card {

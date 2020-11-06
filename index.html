@@ -31,12 +31,27 @@
         </form>
     </div>
     <div class="books-container">
-        <div class="book-card">
+        <div class="book-card" value="Lord of the Rings">
             <h3 class="book-header">Title:</h3>
+            <p>Lord of the Rings</p>
             <h3 class="book-header">Author:</h3>
+            <p>J.R.R. Tolkien</p>
             <h3 class="book-header">Pages:</h3>
+            <p>1323</p>
             <h3 class="book-header">Finished:</h3>
-            <button class="delete">X</button>
+            <p>I dont know how to read</p>
+            <button class="delete" value="Space">X</button>
+        </div>
+        <div class="book-card" value="The Great Gatsby">
+            <h3 class="book-header">Title:</h3>
+            <p>The Great Gatsby</p>
+            <h3 class="book-header">Author:</h3>
+            <p>F. Scott Fitzgerald</p>
+            <h3 class="book-header">Pages:</h3>
+            <p>148</p>
+            <h3 class="book-header">Finished:</h3>
+            <p>I dont know how to read</p>
+            <button class="delete" value="Space">X</button>
         </div>
     </div>
 
@@ -56,7 +71,30 @@ function bookTest() {
     newSectionTitle.textContent = 'Title:';
     const bookTitle = document.createElement('p');
     bookTitle.textContent = library[0].title; // access first book in array (always new book with 'unshift')
-    //bookTitle.textContent = library[bookInLibrary].title;
+
+    const newSectionAuthor = document.createElement('h3');
+    newSectionAuthor.setAttribute('class', 'book-header');
+    newSectionAuthor.textContent = 'Author:';
+    const bookAuthor = document.createElement('p');
+    bookAuthor.textContent = library[0].author;
+
+    const newSectionPages = document.createElement('h3');
+    newSectionPages.setAttribute('class', 'book-header');
+    newSectionPages.textContent = 'Pages:';
+    const bookPages = document.createElement('p');
+    bookPages.textContent = library[0].pages;
+
+    const newSectionFinish = document.createElement('h3');
+    newSectionFinish.setAttribute('class', 'book-header');
+    newSectionFinish.textContent = 'Finished:';
+    const bookFinish = document.createElement('p');
+    if (library[0].read === true) {
+        bookFinish.textContent = library[0].read;
+    } else {
+        bookFinish.textContent = 'I dont know how to read';
+        //bookFinish.textContent = library[0].read;
+    }
+    
 
     const newDeleteButton = document.createElement('button');
     newDeleteButton.setAttribute('class', 'delete');
@@ -66,6 +104,12 @@ function bookTest() {
     booksContainer.prepend(newBookCard);
     newBookCard.appendChild(newSectionTitle);
     newBookCard.appendChild(bookTitle);
+    newBookCard.appendChild(newSectionAuthor)
+    newBookCard.appendChild(bookAuthor)
+    newBookCard.appendChild(newSectionPages)
+    newBookCard.appendChild(bookPages)
+    newBookCard.appendChild(newSectionFinish)
+    newBookCard.appendChild(bookFinish)
     newBookCard.appendChild(newDeleteButton);
 }
 /*
@@ -98,24 +142,22 @@ function bookTest() {
     const formContainer = document.querySelector('.form-container');
     const booksContainer = document.querySelector('.books-container');
 
-
     let deleteButtonValue = '';
+
     //DYNAMICALLY SELECT BUTTONS INCLUDING ONES THAT ARE NOT CREATED!!!
     document.querySelector('body').addEventListener('click', (e) => {
-        e.preventDefault();
+        //e.preventDefault();
         if (!event.target) { return; }
         if (event.target.matches('.delete')) {
+           
             event.target.closest('div').remove();
             
             //console.log('value = '+ e.target.value)
-            //if(e.target.value === 'title')
-           // deleteFromLibrary(e);
-
-           let tVal = e.target.value;
+            //let tVal = e.target.value;
            //console.log(tVal);
-           deleteButtonValue = tVal;
-           
-           checkLibraryBooks();
+           //deleteButtonValue = tVal;
+           deleteButtonValue = e.target.value;
+           removeBook();
 
 
 	    }
@@ -127,7 +169,8 @@ function bookTest() {
         val = deleteButtonValue
         console.log('val = ' + val)
     }
-    function checkLibraryBooks() {
+
+    function removeBook() {
         //console.log('val = ' + val)
         for (i =0; i<library.length; i++) {
             if (library[i].title === deleteButtonValue) {
@@ -139,13 +182,6 @@ function bookTest() {
     }
 
 
-   /* function checkLibraryBooks2() {
-        for (i =0; i<library.length; i++) {
-            if ('title' in library[i]) {
-                console.log(library[i].title)
-            } //else { console.log('its gone')}
-        }
-    } */
 
     // alert( ['title'] in library[0] ) = true
     /*
@@ -169,7 +205,7 @@ function bookTest() {
 
 
 
-    document.addEventListener('click', (e) => {
+    /*document.addEventListener('click', (e) => {
         e.preventDefault();
         if (!event.target) { return; }
         if (event.target.matches('.book-card')) {
@@ -177,7 +213,7 @@ function bookTest() {
             console.log('card')
             //console.log('this.value = '+ this.value)
 	    }
-    });
+    });*/
 
     //if (this.value === 'title' in library[i]) {
         //
