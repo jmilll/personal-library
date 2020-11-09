@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Book Library</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="normalize.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
 </head>
@@ -31,7 +32,7 @@
         </form>
     </div>
     <div class="books-container">
-        <div class="book-card" value="Lord of the Rings">
+        <div class="book-card read" value="Lord of the Rings">
             <h3 class="book-header">Title:</h3>
             <p>Lord of the Rings</p>
             <h3 class="book-header">Author:</h3>
@@ -39,8 +40,9 @@
             <h3 class="book-header">Pages:</h3>
             <p>1323</p>
             <h3 class="book-header">Finished:</h3>
-            <p>I dont know how to read</p>
+            <p>Finished</p>
             <button class="delete" value="Space">X</button>
+            <button class="read-status">Read Status</button>
         </div>
         <div class="book-card" value="The Great Gatsby">
             <h3 class="book-header">Title:</h3>
@@ -50,8 +52,9 @@
             <h3 class="book-header">Pages:</h3>
             <p>148</p>
             <h3 class="book-header">Finished:</h3>
-            <p>I dont know how to read</p>
+            <p>Not Read</p>
             <button class="delete" value="Space">X</button>
+            <button class="read-status">Read Status</button>
         </div>
     </div>
 
@@ -89,17 +92,21 @@ function bookTest() {
     newSectionFinish.textContent = 'Finished:';
     const bookFinish = document.createElement('p');
     if (library[0].read === true) {
-        bookFinish.textContent = library[0].read;
+        bookFinish.textContent = "Finished";
+        newBookCard.classList.add('read');
     } else {
-        bookFinish.textContent = 'I dont know how to read';
+        bookFinish.textContent = 'Not Read';
         //bookFinish.textContent = library[0].read;
     }
-    
 
     const newDeleteButton = document.createElement('button');
     newDeleteButton.setAttribute('class', 'delete');
     newDeleteButton.setAttribute('value', library[0].title);
     newDeleteButton.textContent = 'X';
+
+    const newReadButton = document.createElement('button');
+    newReadButton.setAttribute('class', 'read-status');
+    newReadButton.textContent = 'Read Status';
 
     booksContainer.prepend(newBookCard);
     newBookCard.appendChild(newSectionTitle);
@@ -110,7 +117,8 @@ function bookTest() {
     newBookCard.appendChild(bookPages)
     newBookCard.appendChild(newSectionFinish)
     newBookCard.appendChild(bookFinish)
-    newBookCard.appendChild(newDeleteButton);
+    newBookCard.appendChild(newDeleteButton)
+    newBookCard.appendChild(newReadButton)
 }
 /*
 function bookTest() {
@@ -163,6 +171,19 @@ function bookTest() {
 	    }
     });
 
+    document.querySelector('div.books-container').addEventListener('click', (e) => {
+        //e.preventDefault();
+        if (!event.target) { return; }
+        if (event.target.matches('.read-status')) {
+            console.log('toggle attempt')
+            //event.target.closest('div').toggleClass('read')
+            event.target.parentElement.classList.toggle("read");
+            //event.target.closest('div').remove();
+
+
+
+	    }
+    });
 
     function checkGlobal() {
         console.log(deleteButtonValue)

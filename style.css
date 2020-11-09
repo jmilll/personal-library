@@ -6,10 +6,14 @@ body {
     margin: 0;
     background: linear-gradient(to top left, rgb(59, 104, 126), rgb(255, 254, 246));/*linear-gradient(to bottom, rgba(0, 255, 234, 0.2), rgba(255, 217, 0, 0.2))*/
     
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Inconsolata', monospace, sans-serif;
+    color: rgb(30 30 30);
     font-size: 1.5em;
 }
 
+button {
+    cursor: pointer;
+}
 .form-container {
     width: 100%;
     min-height: 100vh;
@@ -25,41 +29,82 @@ display:block from normal to make it appear from a button click*/
 .book-entry {
     width: 300px;
     height: auto;
-    padding: 15px;
+    padding: 15px 20px 15px 15px; /*extra on right to compensate for input*/
     margin: 100px auto auto auto;
     /*border: 1px solid white;*/
-    background: linear-gradient(to bottom right, rgb(86, 140, 172), rgb(84, 46, 99));
+    background: linear-gradient(to bottom right, rgba(86, 140, 172, .5), rgba(84, 46, 99, .5));
     border-radius: 10px;
 }
 
 label {
-   /*background-color: pink;*/
+   font-weight: 600;
 }
 
 input {
-    margin: 3px 0px 9px 0px;
-    padding: 0px;
+    margin: 2px 0px 10px 0px;
+    padding: 1px 0px 1px 5px;
     width: 100%;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    border: none;
+    /*
     border-top: none;
     border-right: none;
     border-left: none;
-    border-bottom: border: 1px solid black;
+    border-bottom: border 1px solid black; */
 }
 
-.book-header {
-    font-size: 1em;
-    font-weight: bolder;
+#finished {
+    width: 30px;
+    margin: 3px 0px 0px 0px;
+    height: 17px;
+    cursor: pointer;
 }
+
 .books-container {
     border: 3px solid green;
     background-color: rgba(235, 154, 154, 0.3);
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
 }
 
 .book-card {
-    margin: 0;
+    margin: 0px 0px 15px 15px;
+    padding: 10px;
     border: 3px solid pink;
     width: 200px;
     height: auto;
+}
+
+.book-card.read {
+    border: 3px solid green;
+}
+
+.book-card:hover {
+    background-color: gray;
+    transition: 6ms;
+}
+.book-header {
+    font-size: 0.7em;
+    font-weight: 600;
+    margin: 0px;
+    padding: 0px;
+}
+
+p {
+    font-size: 0.7em;
+    font-weight: 400;
+    padding: 0px;
+    margin: 0px 0px 7px 0px;
+}
+
+.delete {
+    background-color: rgba(160, 0, 0, .8);
+    color: rgba(255, 255, 255, .9);
+    border: none;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.6em;
 }
