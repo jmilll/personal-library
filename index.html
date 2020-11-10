@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Book Library</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link href="normalize.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
 </head>
@@ -24,12 +24,18 @@
                 <label>Pages: </label>
                 <input type="number" id="pages" value="123" required>
             </div>
-            <div class="input">
+            <label class="cb-container">Already Finished?
+                <input type="checkbox" id="finished">
+                <span class="checkmark"></span>  
+            </label>
+            <!-- <div class="input">
                 <label>Finished Reading: </label>
                 <input type="checkbox" id="finished">
-            </div>
-            <button id="submit-button">Add</button>
+            </div> -->
+            <button id="submit-button">Add Book</button>
+            <button id="cancel-form">X</button>
         </form>
+            
     </div>
     <div class="books-container">
         <div class="book-card read" value="Lord of the Rings">

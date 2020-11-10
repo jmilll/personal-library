@@ -8,17 +8,50 @@ body {
     
     font-family: 'Inconsolata', monospace, sans-serif;
     color: rgb(30 30 30);
-    font-size: 1.5em;
+    font-size: 1.4em;
 }
 
 button {
     cursor: pointer;
+    border: none;
+    border-radius: 3px;
+}
+
+#cancel-form {
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: rgb(193 199 211);
+    color: #fafbf8;
+    position: absolute;
+    align-self: center;
+    margin-top: 370px;
+}
+
+#cancel-form2 {
+    align-self: flex-end;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    color: #ebefee;
+    position: absolute;
+    margin: -20px 0px 0px 20px;
+}
+
+form h2 {
+    margin: 0px 0px 10px 0px;
+    align-self: center;
+    font-weight: 800;
+    
 }
 .form-container {
     width: 100%;
     min-height: 100vh;
     border: 3px solid yellow;
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.5);
 }
 /*later after getting it to look right add open class and remove 
 display:block from normal to make it appear from a button click*/
@@ -32,8 +65,17 @@ display:block from normal to make it appear from a button click*/
     padding: 15px 20px 15px 15px; /*extra on right to compensate for input*/
     margin: 100px auto auto auto;
     /*border: 1px solid white;*/
-    background: linear-gradient(to bottom right, rgba(86, 140, 172, .5), rgba(84, 46, 99, .5));
+    background: linear-gradient(to bottom right, rgba(86, 140, 172, .5), rgba(54, 46, 99, .5));
     border-radius: 10px;
+    display: flex; 
+    flex-direction: column;
+}
+
+#submit-button {
+    margin: 25px 28% 0px 28%;
+    padding: 3px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 3px solid rgba(184, 200, 205, .5);
 }
 
 label {
@@ -56,8 +98,7 @@ input {
 
 #finished {
     width: 30px;
-    margin: 3px 0px 0px 0px;
-    height: 17px;
+    height: 16px;
     cursor: pointer;
 }
 
@@ -67,7 +108,7 @@ input {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding: 20px;
+    padding: 20px 20px 5px 5px;
 }
 
 .book-card {
@@ -108,3 +149,74 @@ p {
     padding: 2px 6px;
     font-size: 0.6em;
 }
+
+
+/* ------------------------------------------- */
+/* -----------------CHECKBOX------------------ */
+
+/* The container */
+.cb-container {
+    display: block;
+    position: relative;
+    padding-left: 12%;
+    cursor: pointer;
+    user-select: none;
+    margin-top: 6px;
+  }
+/* Hide the browser's default checkbox */
+.cb-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 25px;
+    width: 25px;
+    background-color: rgba(255, 255, 255, 0.2);;
+    margin-right: 12%;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .cb-container:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .cb-container input:checked ~ .checkmark {
+    background-color: #2196F3;
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .cb-container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .cb-container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+/* -----------------CHECKBOX------------------ */
+/* ------------------------------------------- */
