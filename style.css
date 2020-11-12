@@ -76,6 +76,13 @@ display:block from normal to make it appear from a button click*/
     padding: 3px;
     background-color: rgba(255, 255, 255, 0.2);
     border: 3px solid rgba(184, 200, 205, .5);
+    font-size: 0.85em;
+    font-weight: 600;
+}
+
+.read-status {
+    font-size: .7em;
+    background-color: rgba(176, 168, 173, .8);;
 }
 
 label {
@@ -117,6 +124,8 @@ input {
     border: 3px solid pink;
     width: 200px;
     height: auto;
+    background: rgb(255 255 255 / 0.8);
+    border-radius: 6px;
 }
 
 .book-card.read {

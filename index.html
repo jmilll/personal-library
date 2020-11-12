@@ -181,15 +181,33 @@ function bookTest() {
         //e.preventDefault();
         if (!event.target) { return; }
         if (event.target.matches('.read-status')) {
-            console.log('toggle attempt')
+            //console.log('toggle attempt')
+            //event.target.closest('div').toggleClass('read')
+            
+            event.target.parentElement.classList.toggle("read");
+
+            const finishedStatus = event.target.parentElement.querySelector('p:nth-child(8)');
+            if (finishedStatus.textContent === "Finished") {
+                finishedStatus.textContent = 'Not Read'
+            } else {
+                finishedStatus.textContent = 'Finished'
+            }
+            //console.log(finishedStatus)
+            
+
+	    } 
+    });
+    /*
+    document.querySelector('div.books-container').addEventListener('click', (e) => {
+        //e.preventDefault();
+        if (!event.target) { return; }
+        if (event.target.matches('.read-status')) {
+            //console.log('toggle attempt')
             //event.target.closest('div').toggleClass('read')
             event.target.parentElement.classList.toggle("read");
-            //event.target.closest('div').remove();
-
-
-
 	    }
     });
+    */
 
     function checkGlobal() {
         console.log(deleteButtonValue)
@@ -201,7 +219,7 @@ function bookTest() {
         //console.log('val = ' + val)
         for (i =0; i<library.length; i++) {
             if (library[i].title === deleteButtonValue) {
-                console.log('same guy')
+               // console.log('same guy')
                 library.splice(i, 1);
                 console.log(library)
             } //else { console.log('its gone')}
