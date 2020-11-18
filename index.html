@@ -15,30 +15,25 @@
     <div class="form-container"> 
         <form class="book-entry">
             <h2>New Book</h2>
-            <div class="input">
-                <label>Title: </label>
-                <input type="text" id="title" value="" required>
-            </div>
-            <div class="input">
-                <label>Author: </label>
-                <input type="text" id="author" value="" required>
-            </div>
-            <div class="input">
-                <label>Pages: </label>
-                <input type="number" id="pages" value="" required>
-            </div>
+            
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title"  required>
+            
+            <label for="author">Author:</label>
+            <input type="text" id="author" name="author"  required>
+            
+            <label for="pages">Pages: </label>
+            <input type="number" id="pages" name="pages" min="0" max="10000"  required>
+
             <label class="cb-container">Already Finished?
                 <input type="checkbox" id="finished">
                 <span class="checkmark"></span>  
             </label>
-            <!-- <div class="input">
-                <label>Finished Reading: </label>
-                <input type="checkbox" id="finished">
-            </div> -->
-            <button id="cancel-form">X</button> 
-            <button id="submit-button">Add Book</button>
-            
-        </form>
+            <button type ="submit" id="submit-button">Add Book</button>
+            <button type ="reset" id="cancel-form">X</button> 
+            <!--<input type="submit" value="Add Book">
+            <input type="reset">-->
+          </form> 
         
            <!-- <button type ="button" id="cancel-form" value="res">X</button> -->
     </div>

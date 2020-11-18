@@ -29,12 +29,12 @@ button {
     border-radius: 50%;
     width: 40px;
     height: 40px;
-    background-color: rgb(193 199 211);
+    background-color: rgba(131, 141, 167, .6);
     color: #fafbf8;
 
     position: absolute;
     left: 50%;
-    margin: 10px 0px 0px -20px;
+    margin: 360px 0px 0px -20px;
     
 }
 

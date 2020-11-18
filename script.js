@@ -241,28 +241,33 @@ function createBookCard() {
         toggleForm();
     });
 
-    ///* CANCEL BUTTON ANYWHERE IN DOC CAUSES FORM TO NOT 'REQUIRE'
+    // CANCEL BUTTON ANYWHERE IN DOC CAUSES FORM TO NOT 'REQUIRE'
     cancelButton.addEventListener('click', (e) => {
         e.preventDefault();
         clearForm();
         toggleForm();
     });
-    //*/
+    
     function clearForm() {
         formContainer.querySelectorAll('input').forEach(input => input.value = '');
     }
-
+    
     submitButton.addEventListener('click', (e) => {
-        //e.preventDefault();
+        if (!title.value || !author.value || !pages.value) return;
+        e.preventDefault();
+        
         //unshift instead of push, to make the new book added index always 0
         library.unshift(new book(title.value, author.value, pages.value, finished.checked));
         //library.push(newBook);
         console.log(library);
         bookInLibrary += 1;
         createBookCard();
+        clearForm();
         toggleForm();
     });
+    
 
+    //document.querySelector('form.book-entry')
 
    /* function addBook(obj) {
         library.push(obj);
