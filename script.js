@@ -1,6 +1,7 @@
 
 
 function createBookCard() {
+    
     const newBookCard = document.createElement('div');
     newBookCard.setAttribute('class', 'book-card');
     newBookCard.setAttribute('value', library[0].title);
@@ -80,6 +81,8 @@ function createBookCard() {
 
     window.addEventListener('load', (e) => {e.preventDefault()});
     const submitButton = document.getElementById('submit-button');
+    const addNewButton = document.getElementById('add-book');
+    const cancelButton = document.getElementById('cancel-form');
     const title = document.getElementById('title');
     const author = document.getElementById('author');
     const pages = document.getElementById('pages');
@@ -90,12 +93,12 @@ function createBookCard() {
     let deleteButtonValue = '';
 
     //DYNAMICALLY SELECT BUTTONS INCLUDING ONES THAT ARE NOT CREATED!!!
-    document.querySelector('body').addEventListener('click', (e) => {
+    booksContainer.addEventListener('click', (e) => {
         //e.preventDefault();
-        if (!event.target) { return; }
-        if (event.target.matches('.delete')) {
+        if (!e.target) { return; }
+        if (e.target.matches('.delete')) {
            
-            event.target.closest('div').remove();
+            e.target.closest('div').remove();
             
             //console.log('value = '+ e.target.value)
             //let tVal = e.target.value;
@@ -110,14 +113,14 @@ function createBookCard() {
 
     document.querySelector('div.books-container').addEventListener('click', (e) => {
         //e.preventDefault();
-        if (!event.target) { return; }
-        if (event.target.matches('.read-status')) {
+        if (!e.target) { return; }
+        if (e.target.matches('.read-status')) {
             //console.log('toggle attempt')
             //event.target.closest('div').toggleClass('read')
             
-            event.target.parentElement.classList.toggle("read");
+            e.target.parentElement.classList.toggle("read");
 
-            const finishedStatus = event.target.parentElement.querySelector('p:nth-child(8)');
+            const finishedStatus = e.target.parentElement.querySelector('p:nth-child(8)');
             if (finishedStatus.textContent === "Finished") {
                 finishedStatus.textContent = 'Not Read'
             } else {
@@ -233,10 +236,24 @@ function createBookCard() {
     //new book(title.value, author.value, pages.value, finished.checked) 
 
 
-    
-    
-    submitButton.addEventListener('click', (e) => {
+    addNewButton.addEventListener('click', (e) => {
         e.preventDefault();
+        toggleForm();
+    });
+
+    ///* CANCEL BUTTON ANYWHERE IN DOC CAUSES FORM TO NOT 'REQUIRE'
+    cancelButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        clearForm();
+        toggleForm();
+    });
+    //*/
+    function clearForm() {
+        formContainer.querySelectorAll('input').forEach(input => input.value = '');
+    }
+
+    submitButton.addEventListener('click', (e) => {
+        //e.preventDefault();
         //unshift instead of push, to make the new book added index always 0
         library.unshift(new book(title.value, author.value, pages.value, finished.checked));
         //library.push(newBook);

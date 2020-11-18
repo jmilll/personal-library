@@ -1,4 +1,7 @@
 /**/
+html {
+    min-height: 100%;
+}
 body {
     height: 100%;
     width: auto;
@@ -17,7 +20,25 @@ button {
     border-radius: 3px;
 }
 
+#add-book {
+    font-size: .7em;
+    background-color: rgba(176, 168, 173, .8);
+}
 #cancel-form {
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: rgb(193 199 211);
+    color: #fafbf8;
+
+    position: absolute;
+    left: 50%;
+    margin: 10px 0px 0px -20px;
+    
+}
+
+#cancel-form2 { /*original in the form which caused it not to 'require' */
     border: none;
     border-radius: 50%;
     width: 40px;
@@ -28,8 +49,7 @@ button {
     align-self: center;
     margin-top: 370px;
 }
-
-#cancel-form2 {
+#cancel-form3 { /*on the form in top right */
     align-self: flex-end;
     border: none;
     border-radius: 50%;
@@ -48,10 +68,13 @@ form h2 {
     
 }
 .form-container {
+    display: none;
     width: 100%;
     min-height: 100vh;
     border: 3px solid yellow;
     background-color: rgba(255, 255, 255, 0.5);
+
+    position: relative;
 }
 /*later after getting it to look right add open class and remove 
 display:block from normal to make it appear from a button click*/

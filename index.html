@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html5>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,20 +9,23 @@
     <link href="style.css" rel="stylesheet">
 </head>
 <body>
+    <div class="header">
+        <button type="button" id="add-book">Add New</button>
+    </div>
     <div class="form-container"> 
         <form class="book-entry">
             <h2>New Book</h2>
             <div class="input">
                 <label>Title: </label>
-                <input type="text" id="title" value="Space" required>
+                <input type="text" id="title" value="" required>
             </div>
             <div class="input">
                 <label>Author: </label>
-                <input type="text" id="author" value="Zues" required>
+                <input type="text" id="author" value="" required>
             </div>
             <div class="input">
                 <label>Pages: </label>
-                <input type="number" id="pages" value="123" required>
+                <input type="number" id="pages" value="" required>
             </div>
             <label class="cb-container">Already Finished?
                 <input type="checkbox" id="finished">
@@ -32,10 +35,12 @@
                 <label>Finished Reading: </label>
                 <input type="checkbox" id="finished">
             </div> -->
+            <button id="cancel-form">X</button> 
             <button id="submit-button">Add Book</button>
-            <button id="cancel-form">X</button>
-        </form>
             
+        </form>
+        
+           <!-- <button type ="button" id="cancel-form" value="res">X</button> -->
     </div>
     <div class="books-container">
         <div class="book-card read" value="Lord of the Rings">
@@ -66,262 +71,6 @@
 
 
 
-<script>
-
-
-function bookTest() {
-    const newBookCard = document.createElement('div');
-    newBookCard.setAttribute('class', 'book-card');
-    newBookCard.setAttribute('value', library[0].title);
-    //newBookCard.setAttribute('value', library[bookInLibrary].title);
-
-    const newSectionTitle = document.createElement('h3');
-    newSectionTitle.setAttribute('class', 'book-header');
-    newSectionTitle.textContent = 'Title:';
-    const bookTitle = document.createElement('p');
-    bookTitle.textContent = library[0].title; // access first book in array (always new book with 'unshift')
-
-    const newSectionAuthor = document.createElement('h3');
-    newSectionAuthor.setAttribute('class', 'book-header');
-    newSectionAuthor.textContent = 'Author:';
-    const bookAuthor = document.createElement('p');
-    bookAuthor.textContent = library[0].author;
-
-    const newSectionPages = document.createElement('h3');
-    newSectionPages.setAttribute('class', 'book-header');
-    newSectionPages.textContent = 'Pages:';
-    const bookPages = document.createElement('p');
-    bookPages.textContent = library[0].pages;
-
-    const newSectionFinish = document.createElement('h3');
-    newSectionFinish.setAttribute('class', 'book-header');
-    newSectionFinish.textContent = 'Finished:';
-    const bookFinish = document.createElement('p');
-    if (library[0].read === true) {
-        bookFinish.textContent = "Finished";
-        newBookCard.classList.add('read');
-    } else {
-        bookFinish.textContent = 'Not Read';
-        //bookFinish.textContent = library[0].read;
-    }
-
-    const newDeleteButton = document.createElement('button');
-    newDeleteButton.setAttribute('class', 'delete');
-    newDeleteButton.setAttribute('value', library[0].title);
-    newDeleteButton.textContent = 'X';
-
-    const newReadButton = document.createElement('button');
-    newReadButton.setAttribute('class', 'read-status');
-    newReadButton.textContent = 'Read Status';
-
-    booksContainer.prepend(newBookCard);
-    newBookCard.appendChild(newSectionTitle);
-    newBookCard.appendChild(bookTitle);
-    newBookCard.appendChild(newSectionAuthor)
-    newBookCard.appendChild(bookAuthor)
-    newBookCard.appendChild(newSectionPages)
-    newBookCard.appendChild(bookPages)
-    newBookCard.appendChild(newSectionFinish)
-    newBookCard.appendChild(bookFinish)
-    newBookCard.appendChild(newDeleteButton)
-    newBookCard.appendChild(newReadButton)
-}
-/*
-function bookTest() {
-    const newBookCard = document.createElement('div');
-    newBookCard.setAttribute('class', 'book-card');
-
-    const newCardSection = document.createElement('h3');
-    newCardSection.setAttribute('class', 'book-header');
-    newCardSection.textContent = 'Title:';
-
-    const newDeleteButton = document.createElement('button');
-    newDeleteButton.setAttribute('class', 'delete');
-    newDeleteButton.textContent = 'X';
-
-    booksContainer.appendChild(newBookCard);
-    newBookCard.appendChild(newCardSection);
-    newBookCard.appendChild(newDeleteButton);
-} */
-
-
-
-
-    window.addEventListener('load', (e) => {e.preventDefault()});
-    const submitButton = document.getElementById('submit-button');
-    const title = document.getElementById('title');
-    const author = document.getElementById('author');
-    const pages = document.getElementById('pages');
-    const finished = document.getElementById('finished');
-    const formContainer = document.querySelector('.form-container');
-    const booksContainer = document.querySelector('.books-container');
-
-    let deleteButtonValue = '';
-
-    //DYNAMICALLY SELECT BUTTONS INCLUDING ONES THAT ARE NOT CREATED!!!
-    document.querySelector('body').addEventListener('click', (e) => {
-        //e.preventDefault();
-        if (!event.target) { return; }
-        if (event.target.matches('.delete')) {
-           
-            event.target.closest('div').remove();
-            
-            //console.log('value = '+ e.target.value)
-            //let tVal = e.target.value;
-           //console.log(tVal);
-           //deleteButtonValue = tVal;
-           deleteButtonValue = e.target.value;
-           removeBook();
-
-
-	    }
-    });
-
-    document.querySelector('div.books-container').addEventListener('click', (e) => {
-        //e.preventDefault();
-        if (!event.target) { return; }
-        if (event.target.matches('.read-status')) {
-            //console.log('toggle attempt')
-            //event.target.closest('div').toggleClass('read')
-            
-            event.target.parentElement.classList.toggle("read");
-
-            const finishedStatus = event.target.parentElement.querySelector('p:nth-child(8)');
-            if (finishedStatus.textContent === "Finished") {
-                finishedStatus.textContent = 'Not Read'
-            } else {
-                finishedStatus.textContent = 'Finished'
-            }
-            //console.log(finishedStatus)
-            
-
-	    } 
-    });
-    /*
-    document.querySelector('div.books-container').addEventListener('click', (e) => {
-        //e.preventDefault();
-        if (!event.target) { return; }
-        if (event.target.matches('.read-status')) {
-            //console.log('toggle attempt')
-            //event.target.closest('div').toggleClass('read')
-            event.target.parentElement.classList.toggle("read");
-	    }
-    });
-    */
-
-    function checkGlobal() {
-        console.log(deleteButtonValue)
-        val = deleteButtonValue
-        console.log('val = ' + val)
-    }
-
-    function removeBook() {
-        //console.log('val = ' + val)
-        for (i =0; i<library.length; i++) {
-            if (library[i].title === deleteButtonValue) {
-               // console.log('same guy')
-                library.splice(i, 1);
-                console.log(library)
-            } //else { console.log('its gone')}
-        }
-    }
-
-
-
-    // alert( ['title'] in library[0] ) = true
-    /*
-    function removeByAttr(arr, attr, value){
-        var i = arr.length;
-        while(i--){
-            if( arr[i] 
-                && arr[i].hasOwnProperty(attr) 
-                && (arguments.length > 2 && arr[i][attr] === value ) ){ 
-
-                arr.splice(i,1);
-
-            }
-            }
-            return arr;
-    } //removeByAttr(library, 'title', 'space'); */
-
-
-
-
-
-
-
-    /*document.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (!event.target) { return; }
-        if (event.target.matches('.book-card')) {
-            //event.target.closest('div').remove();
-            console.log('card')
-            //console.log('this.value = '+ this.value)
-	    }
-    });*/
-
-    //if (this.value === 'title' in library[i]) {
-        //
-    //}
-
-    /* SPLICE EXAMPLE
-    var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
-    for( var i = 0; i < arr.length; i++){ 
-        if ( arr[i] === 5) { arr.splice(i, 1); 
-    }}//=> [1, 2, 3, 4, 6, 7, 8, 9, 0]
-    */
-
-    let library = [];
-    let bookInLibrary = library.length -1;
-    
-
-    function book(title, author, pages, read) {
-        this.title = title
-        this.author = author
-        this.pages = pages
-        this.read = read
-        //this.info = function() {
-        //    return this.title + ' by ' + this.author + ', ' + this.pages + ' pages, ' + this.read;
-        //}
-    }
-    //const theHobbit = new book('The Hobbit','J.R.R. Tolkien','295', 'not read')
-    //console.log(theHobbit.info());
-
-    //new book(title.value, author.value, pages.value, finished.checked) 
-
-
-    
-    
-    submitButton.addEventListener('click', (e) => {
-        e.preventDefault();
-        //unshift instead of push, to make the new book added index always 0
-        library.unshift(new book(title.value, author.value, pages.value, finished.checked));
-        //library.push(newBook);
-        console.log(library);
-        bookInLibrary += 1;
-        bookTest();
-    });
-
-
-   /* function addBook(obj) {
-        library.push(obj);
-    } */
-
-   /* function resetForm() {
-
-    }
-
-
-    function removeBook() {
-        
-    }
-
-    function updateLibrary() {
-        
-    } 
-    */
-    
-    //playButton.addEventListener('click', () => {starterDiv.remove()});
-</script>    
+<script src="script.js"></script>    
 </body>
 </html>
