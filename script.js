@@ -40,11 +40,17 @@ function createBookCard() {
     const newDeleteButton = document.createElement('button');
     newDeleteButton.setAttribute('class', 'delete');
     newDeleteButton.setAttribute('value', library[0].title);
-    newDeleteButton.textContent = 'X';
+    newDeleteButton.textContent = 'x';
 
     const newReadButton = document.createElement('button');
     newReadButton.setAttribute('class', 'read-status');
-    newReadButton.textContent = 'Read Status';
+    if (library[0].read === true) {
+        newReadButton.textContent = 'Read';
+        newReadButton.classList.add('read');
+    } else {
+        newReadButton.textContent = 'Not Read';
+    }
+    //newReadButton.textContent = 'Read Status';
 
     booksContainer.prepend(newBookCard);
     newBookCard.appendChild(newSectionTitle);
@@ -118,7 +124,8 @@ function createBookCard() {
             //console.log('toggle attempt')
             //event.target.closest('div').toggleClass('read')
             
-            e.target.parentElement.classList.toggle("read");
+            //e.target.parentElement.classList.toggle("read");
+            e.target.classList.toggle("read");
 
             const finishedStatus = e.target.parentElement.querySelector('p:nth-child(8)');
             if (finishedStatus.textContent === "Finished") {
@@ -128,6 +135,11 @@ function createBookCard() {
             }
             //console.log(finishedStatus)
             
+            if (e.target.textContent === 'Read') {
+                e.target.textContent = 'Not Read'
+            } else {
+                e.target.textContent = 'Read'
+            }
 
 	    } 
     });
