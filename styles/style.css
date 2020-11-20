@@ -200,14 +200,14 @@ button:hover {
 
 .read-status {
     font-size: .7em;
-    background-color: rgba(176, 168, 173, .8);;
+    background-color: rgba(176, 168, 173, .4);;
     align-self: flex-end;
     width: 40%;
     padding: 3px 0px;
 }
 
 .read-status.read {
-    background-color: rgb(0 128 0);
+    background-color: #3a9a3a;
     color: #fff;
 }
 .delete {
