@@ -1,6 +1,6 @@
 /**/
 :root {
-    --entry-input-bkg:rgba(255, 255, 255, .3);
+    --entry-input-bkg:rgba(255, 255, 255, .5);
 }
 
 html {
@@ -33,7 +33,7 @@ h1 {
     font-size: 2em;
     border-top: 2px solid rgb(30 30 30);
     border-bottom: 2px solid rgb(30 30 30);
-    margin: 2% 0px 3% 0px;
+    margin: 3% 0px 3% 0px;
     padding: .5% 5%;
 }
 
@@ -56,17 +56,25 @@ form h2 {
     display: none;
     width: 100%;
     min-height: 100vh;
-    background-color: rgba(69, 72, 72, .85);
+    background-color: rgba(47, 49, 49, .85);
     z-index: 1;
     position: relative;
 }
 
-/*later after getting it to look right add open class and remove 
-display:block from normal to make it appear from a button click*/
 .form-container.open  {
     display: block;
     position: absolute;
+    animation: fadein 0.3s;
 }
+
+@keyframes fadein {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 
 .book-entry {
     width: 300px;
@@ -75,7 +83,7 @@ display:block from normal to make it appear from a button click*/
     margin: 100px auto auto auto;
     /*border: 1px solid white;*/
     /*background: linear-gradient(to bottom right, rgba(86, 140, 172, .5), rgba(54, 46, 99, .5));*/
-    background: rgba(231, 231, 231, .9);
+    background: rgba(241, 241, 241, .9);
     border-radius: 10px;
     display: flex; 
     flex-direction: column;
@@ -162,7 +170,7 @@ button {
 button:hover {
     transform: translateY(-2.5px);
     transition: .2s;
-    background-color: rgba(255, 255, 255, .3);
+    background-color: rgba(255, 255, 255, .8);
     box-shadow: 2px 6px 9px -5px rgba(132, 132, 132, 0.80);
 }
 
@@ -199,8 +207,8 @@ button:hover {
 }
 
 .read-status.read {
-    background-color: green;
-    color: white;
+    background-color: rgb(0 128 0);
+    color: #fff;
 }
 .delete {
     color: rgba(160, 0, 0);
@@ -260,7 +268,7 @@ button:hover {
   
   /* On mouse-over, add a grey background color */
   .cb-container:hover input ~ .checkmark {
-    background-color: rgb(236, 236, 236);
+    background-color: rgba(255, 255, 255, .8);
   }
   
   /* When the checkbox is checked, add a blue background */
@@ -286,7 +294,7 @@ button:hover {
     top: 5px;
     width: 5px;
     height: 10px;
-    border: solid white;
+    border: solid #fff;
     border-width: 0 3px 3px 0;
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
