@@ -166,72 +166,6 @@ renderLibrary();
 ----------------------------*/
 /*----------------------------*/
 /*----------------------------*/
-/*----------------------------*/
-
-
-/*
-function createBookCard() {
-    
-    const newBookCard = document.createElement('div');
-    newBookCard.setAttribute('class', 'book-card');
-    newBookCard.setAttribute('value', library[0].title);
-    //newBookCard.setAttribute('value', library[bookInLibrary].title);
-
-    const newSectionTitle = document.createElement('h3');
-    newSectionTitle.setAttribute('class', 'book-header');
-    newSectionTitle.textContent = 'Title:';
-    const bookTitle = document.createElement('p');
-    bookTitle.textContent = library[0].title; // access first book in array (always new book with 'unshift')
-
-    const newSectionAuthor = document.createElement('h3');
-    newSectionAuthor.setAttribute('class', 'book-header');
-    newSectionAuthor.textContent = 'Author:';
-    const bookAuthor = document.createElement('p');
-    bookAuthor.textContent = library[0].author;
-
-    const newSectionPages = document.createElement('h3');
-    newSectionPages.setAttribute('class', 'book-header');
-    newSectionPages.textContent = 'Pages:';
-    const bookPages = document.createElement('p');
-    bookPages.textContent = library[0].pages;
-
-    const newSectionFinish = document.createElement('h3');
-    newSectionFinish.setAttribute('class', 'book-header');
-    newSectionFinish.textContent = 'Finished:';
-    const bookFinish = document.createElement('p');
-    if (library[0].read === true) {
-        bookFinish.textContent = "Finished";
-    } else {
-        bookFinish.textContent = 'Not Read';
-    }
-
-    const newDeleteButton = document.createElement('button');
-    newDeleteButton.setAttribute('class', 'delete');
-    newDeleteButton.setAttribute('value', library[0].title);
-    newDeleteButton.textContent = 'x';
-
-    const newReadButton = document.createElement('button');
-    newReadButton.setAttribute('class', 'read-status');
-    if (library[0].read === true) {
-        newReadButton.textContent = 'Read';
-        newReadButton.classList.add('read');
-    } else {
-        newReadButton.textContent = 'Not Read';
-    }
-
-    booksContainer.prepend(newBookCard);
-    newBookCard.appendChild(newSectionTitle);
-    newBookCard.appendChild(bookTitle);
-    newBookCard.appendChild(newSectionAuthor)
-    newBookCard.appendChild(bookAuthor)
-    newBookCard.appendChild(newSectionPages)
-    newBookCard.appendChild(bookPages)
-    newBookCard.appendChild(newSectionFinish)
-    newBookCard.appendChild(bookFinish)
-    newBookCard.appendChild(newDeleteButton)
-    newBookCard.appendChild(newReadButton)
-} */
-
 
 let deleteButtonValue = '';
 
@@ -340,6 +274,16 @@ cancelButton.addEventListener('click', (e) => {
     clearForm();
     toggleForm();
 });
+
+const resetButton = document.getElementById('memory-reset');
+resetButton.addEventListener('click', clearMemory)
+
+function clearMemory() {
+    localStorage.clear();
+    location.reload();
+    return false;
+}
+
 
 function clearForm() {
     formContainer.querySelectorAll('input').forEach(input => input.value = '');
