@@ -17,7 +17,7 @@ let library = [
 ];
 let newBook;
 
-
+//Test for local storage
 function storageAvailable(type) {
     var storage;
     try {
@@ -45,36 +45,19 @@ function storageAvailable(type) {
 
 // if theres local storage do these things pls
 if (storageAvailable('localStorage')) {
-    console.log('Yippee!')
     restore();
   }
   else {
-    alert('No local storage available for saving books :(')
+    alert('No local storage available for saving books :( you can add/remove, but changes will not appear upon refresh')
 }
 
-
-
-/*const books = [
-     {title: 'Lord of The Rings', author: 'J.R.R. Tolkien', pages: '1323', read: 'true' },
-     {title: 'The Great Gatsby', author: 'F. Scott Fitzgerald', pages: '148', read: 'false' },
-     {title: 'The Last Wish', author: 'Andrzej Sapkowski', pages: '288', read: 'true' },
-];
-*/
-
-
-
 function renderLibrary() {
-    //const display = document.getElementById('Library-container');
     const books = document.querySelectorAll('.book-card');
     books.forEach(book => booksContainer.removeChild(book));
-    //backward
+    //render backward for newest first
     for (let i=library.length - 1; i>=0; i--){
         createBookCard(library[i]);
     }
-    //forward
-    //for (let i=0; i<library.length; i++){
-    //    createBookCard(library[i]);
-    //}
 }
 
 function createBookCard(item) {
@@ -150,22 +133,13 @@ function restore() {
         renderLibrary();
     }else {
         let objects = localStorage.getItem('library') // gets information from local storage to use in below loop to create DOM/display
-        //console.log(objects)
         let newObjects = JSON.parse(objects);
         library = newObjects;
-        console.log(objects)
-        console.log(newObjects)
+        //console.log(objects)
+        //console.log(newObjects)
         renderLibrary();
     }
 }
-
-/*----------------------------
-setData();
-renderLibrary();
-
-----------------------------*/
-/*----------------------------*/
-/*----------------------------*/
 
 let deleteButtonValue = '';
 
@@ -177,10 +151,6 @@ booksContainer.addEventListener('click', (e) => {
         
         e.target.closest('div').remove();
         
-        //console.log('value = '+ e.target.value)
-        //let tVal = e.target.value;
-        //console.log(tVal);
-        //deleteButtonValue = tVal;
         deleteButtonValue = e.target.value;
         removeBook();
         setData();
@@ -192,17 +162,11 @@ document.querySelector('div.books-container').addEventListener('click', (e) => {
     //e.preventDefault();
     if (!e.target) { return; }
     if (e.target.matches('.read-status')) {
-        //console.log('toggle attempt')
-        //event.target.closest('div').toggleClass('read')
-        
-        //e.target.parentElement.classList.toggle("read");
+
         e.target.classList.toggle("read");
 
-
-    //select the correct element read status  
-    //console.log(library[e.target.parentElement.id].read)
-    //library[1].read = false
-
+        //select the correct element read status. ex: library[1].read = false  
+            //console.log(library[e.target.parentElement.id].read)
 
         const finishedStatus = e.target.parentElement.querySelector('p:nth-child(8)');
         if (finishedStatus.textContent === "Finished") {
@@ -213,7 +177,6 @@ document.querySelector('div.books-container').addEventListener('click', (e) => {
             finishedStatus.textContent = 'Finished';
             library[e.target.parentElement.id].read = true;
         }
-        //console.log(finishedStatus)
         
         if (e.target.textContent === 'Read') {
             e.target.textContent = 'Not Read'
@@ -243,16 +206,6 @@ function toggleForm() {
     document.querySelector('.form-container').classList.toggle("open");
 }
 
-/*
-class Book {
-    constructor(title, author, pages, read) {
-        this.title = form.title.value
-        this.author = form.author.value
-        this.pages = form.pages.value
-        this.read = form.read.value
-    }
-}*/
-
 function book(title, author, pages, read) {
     this.title = title
     this.author = author
@@ -275,6 +228,7 @@ cancelButton.addEventListener('click', (e) => {
     toggleForm();
 });
 
+// Clear all memory and return to demo
 const resetButton = document.getElementById('memory-reset');
 resetButton.addEventListener('click', clearMemory)
 
@@ -284,7 +238,6 @@ function clearMemory() {
     return false;
 }
 
-
 function clearForm() {
     formContainer.querySelectorAll('input').forEach(input => input.value = '');
 }
@@ -293,31 +246,15 @@ submitButton.addEventListener('click', (e) => {
     if (!title.value || !author.value || !pages.value) return;
     e.preventDefault();
     addBookToLibrary();
-    //unshift instead of push, to make the new book added index always 0
-    //library.unshift(new book(title.value, author.value, pages.value, finished.checked));
-    //library.push(newBook);
-   
-    //console.log(library);
-    //createBookCard();
-    //setData();
-    //renderLibrary();
-    //clearForm();
-    //toggleForm();
 });
 
 function addBookToLibrary() {
         //unshift instead of push, to make the new book added index always 0
         newBook = new book(title.value, author.value, pages.value, finished.checked);
         library.unshift(newBook);
-        //library.push(newBook);
-        console.log(library);
         //createBookCard();
         setData();
         renderLibrary();
         clearForm();
         toggleForm();
 }
-//renderLibrary();
-//restore();
-console.log(library);
-console.log(localStorage.library);
