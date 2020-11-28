@@ -15,6 +15,7 @@ let library = [
     {title: 'The Great Gatsby', author: 'F. Scott Fitzgerald', pages: '148', read: true },
     {title: 'The Last Wish', author: 'Andrzej Sapkowski', pages: '288', read: false },
 ];
+
 let newBook;
 
 //Test for local storage
@@ -43,12 +44,29 @@ function storageAvailable(type) {
     }
 }
 
-// if theres local storage do these things pls
+// If theres local storage do this
 if (storageAvailable('localStorage')) {
     restore();
   }
   else {
     alert('No local storage available for saving books :( you can add/remove, but changes will not appear upon refresh')
+}
+
+// setting Library to be stored in local storage
+function setData() {
+    localStorage.setItem(`library`, JSON.stringify(library));
+}
+
+//pulls books from local storage when page is refreshed
+function restore() {
+    if(!localStorage.library) {
+        renderLibrary();
+    }else {
+        let objects = localStorage.getItem('library') // gets information from local storage to use in below loop to create DOM/display
+        let newObjects = JSON.parse(objects);
+        library = newObjects;
+        renderLibrary();
+    }
 }
 
 function renderLibrary() {
@@ -122,25 +140,6 @@ function createBookCard(item) {
     newBookCard.appendChild(newReadButton)
 }
 
-// setting Library to be stored in local storage
-function setData() {
-    localStorage.setItem(`library`, JSON.stringify(library));
-}
-
-//pulls books from local storage when page is refreshed
-function restore() {
-    if(!localStorage.library) {
-        renderLibrary();
-    }else {
-        let objects = localStorage.getItem('library') // gets information from local storage to use in below loop to create DOM/display
-        let newObjects = JSON.parse(objects);
-        library = newObjects;
-        //console.log(objects)
-        //console.log(newObjects)
-        renderLibrary();
-    }
-}
-
 let deleteButtonValue = '';
 
 //--DYNAMICALLY SELECT BUTTONS INCLUDING ONES THAT ARE NOT CREATED--
@@ -197,7 +196,6 @@ function removeBook() {
     for (i =0; i<library.length; i++) {
         if (library[i].title === deleteButtonValue) {
             library.splice(i, 1);
-            console.log(library)
         }
     }
 }
@@ -211,9 +209,6 @@ function book(title, author, pages, read) {
     this.author = author
     this.pages = pages
     this.read = read
-    //this.info = function() {
-    //    return this.title + ' by ' + this.author + ', ' + this.pages + ' pages, ' + this.read;
-    //}
 } 
 
 addNewButton.addEventListener('click', (e) => {
@@ -252,7 +247,6 @@ function addBookToLibrary() {
         //unshift instead of push, to make the new book added index always 0
         newBook = new book(title.value, author.value, pages.value, finished.checked);
         library.unshift(newBook);
-        //createBookCard();
         setData();
         renderLibrary();
         clearForm();
