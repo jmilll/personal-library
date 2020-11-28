@@ -27,6 +27,15 @@ body {
     flex-direction: column;
 }
 
+.footer {
+    width: 100%;
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+    bottom: 10px;
+    position: absolute;
+}
+
 h1 {
     font-size: 2em;
     border-top: 2px solid rgb(30 30 30);
@@ -100,7 +109,7 @@ input {
     flex-wrap: wrap;
     justify-content: center;
     padding: 20px 30px 5px 0px;
-    margin: 3%;
+    margin: 4% 2% 10% 2%;
 }
 
 .book-card {
@@ -162,8 +171,6 @@ button:hover {
     padding: 4px 11px;
     border: 1.5px solid rgba(193, 21, 21, .4);
     color: rgba(193, 21, 21, .6);
-    position: absolute;
-    bottom: 10px;
 }
 
 #submit-button {
